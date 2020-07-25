@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import Logger from 'redux-logger';
 import ReduxSaga from 'redux-saga';
-import rootReducer from './rootReducer';
+import rootReducer from './root.reducer';
 
 const middlewares = [Logger, ReduxSaga];
 

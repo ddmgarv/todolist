@@ -1,0 +1,13 @@
+.customBtn {
+	border: none;
+	outline: none;
+	background: #000;
+	color: #fff;
+	border-radius: 6px;
+	padding: 8px;
+	text-transform: capitalize;
+	&:focus {
+		border: none;
+		outline: none;
+	}
+}
