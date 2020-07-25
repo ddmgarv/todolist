@@ -1,0 +1,8 @@
+.home {
+	width: 100%;
+	height: 100%;
+	.home__grid {
+		display: grid;
+		grid-template-columns: 33.33% 33.33% 33.33%;
+	}
+}
