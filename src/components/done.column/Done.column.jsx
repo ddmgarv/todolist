@@ -17,7 +17,7 @@ class DoneColumn extends Component {
 				</div>
 				<div>
 					{tasksDone.map((item, index) => (
-						<div>{item}</div>
+						<div key={index}>{item}</div>
 					))}
 				</div>
 			</section>

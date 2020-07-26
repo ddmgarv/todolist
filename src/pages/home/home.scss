@@ -4,5 +4,11 @@
 	.home__grid {
 		display: grid;
 		grid-template-columns: 33.33% 33.33% 33.33%;
+		& > section {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 15px;
+		}
 	}
 }

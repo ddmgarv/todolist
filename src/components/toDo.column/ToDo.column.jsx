@@ -17,7 +17,7 @@ class ToDoColumn extends Component {
 				</div>
 				<div>
 					{tasksToDo.map((item, index) => (
-						<div>{item}</div>
+						<div key={index}>{item}</div>
 					))}
 				</div>
 			</section>

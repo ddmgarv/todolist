@@ -17,7 +17,7 @@ class InProgressColumn extends Component {
 				</div>
 				<div>
 					{tasksInProgress.map((item, index) => (
-						<div>{item}</div>
+						<div key={index}>{item}</div>
 					))}
 				</div>
 			</section>
