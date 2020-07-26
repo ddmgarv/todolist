@@ -10,10 +10,6 @@ export default function initiateIDB() {
 			reject('Error loading database.');
 		};
 
-		DBOpenRequest.onsuccess = function (event) {
-			resolve(DBOpenRequest.result);
-		};
-
 		DBOpenRequest.onupgradeneeded = function (event) {
 			const db = event.target.result;
 			db.onerror = function (event) {
@@ -28,7 +24,10 @@ export default function initiateIDB() {
 			if (!db.objectStoreNames.contains('doneList')) {
 				db.createObjectStore('doneList', { keyPath: 'id', autoIncrement: true });
 			}
-			resolve(DBOpenRequest.result);
+		};
+
+		DBOpenRequest.onsuccess = function (event) {
+			resolve(event.target.result);
 		};
 	});
 }
@@ -64,13 +63,10 @@ export function getAllDataIDB(db) {
 			let allData = [],
 				temp = [...db.objectStoreNames];
 			const transaction = db.transaction(db.objectStoreNames);
-
 			temp.forEach((objStrName, index) => {
 				const objStr = transaction.objectStore(objStrName, 'read');
 				const getReq = objStr.getAll();
-				const timeOut = setTimeout(function () {
-					reject('Not Found');
-				}, 8000);
+				const timeOut = setTimeout(() => reject('Not Found'), 8000);
 				getReq.onsuccess = function (e) {
 					const res = e?.target?.result;
 					if (!!res) {
