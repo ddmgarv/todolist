@@ -1,10 +1,11 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
 import * as homeTypes from './home.types';
+import { getAllDataIDB } from 'IDB';
 
-function* getIDBData(action) {
+function* getIDBData() {
 	try {
-		const user = yield call(new Promise(() => console.log('RUNNING HERE')));
-		yield put({ type: homeTypes.GET_ALL_LISTS_SUCCEEDED, user });
+		const data = yield call(getAllDataIDB);
+		yield put({ type: homeTypes.GET_ALL_LISTS_SUCCEEDED, data });
 	} catch (e) {
 		yield put({ type: homeTypes.GET_ALL_LISTS_FAIL, message: e.message });
 	}
