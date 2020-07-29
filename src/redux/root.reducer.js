@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
-import mainApp from './main.app/main.app.reducer';
+import mainApp from 'redux/main.app/main.app.reducer';
+import home from 'redux/home/home.reducer';
 
-export default combineReducers({ mainApp });
+export default combineReducers({ mainApp, home });

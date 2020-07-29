@@ -1,18 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ToDoColumn from 'components/toDo.column/ToDo.column';
 import InProgressColumn from 'components/inProgress.column/InProgress.column';
 import DoneColumn from 'components/done.column/Done.column';
+import { GET_ALL_LISTS_REQUESTED } from 'redux/home/home.types';
 import './home.scss';
 
 class Home extends React.Component {
-	state = {
-		tasksToDo: [1, 2, 3],
-		tasksInProgress: [1, 2, 3],
-		tasksDone: [1, 2, 3],
-	};
-
 	componentDidMount() {
-		// this.props.getToDoData()
+		this.props.setInitialData();
 	}
 
 	componentDidUpdate() {
@@ -20,17 +16,20 @@ class Home extends React.Component {
 	}
 
 	render() {
-		const { tasksToDo, tasksInProgress, tasksDone } = this.state;
 		return (
 			<div className='home'>
 				<div className='home__grid'>
-					<ToDoColumn tasksToDo={tasksToDo} />
-					<InProgressColumn tasksInProgress={tasksInProgress} />
-					<DoneColumn tasksDone={tasksDone} />
+					<ToDoColumn tasksToDo={[1, 2, 3]} />
+					<InProgressColumn tasksInProgress={[1, 2, 3]} />
+					<DoneColumn tasksDone={[1, 2, 3]} />
 				</div>
 			</div>
 		);
 	}
 }
 
-export default Home;
+const mapDispatchToProps = (dispatch) => ({
+	setInitialData: () => dispatch({ type: GET_ALL_LISTS_REQUESTED }),
+});
+
+export default connect(null, mapDispatchToProps)(Home);

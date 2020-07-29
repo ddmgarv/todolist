@@ -1,3 +1,5 @@
+import store from 'redux/index';
+
 export default function initiateIDB() {
 	return new Promise(function (resolve, reject) {
 		//check for support
@@ -57,7 +59,9 @@ export function getDataIDB(db, objStore, searchParam) {
 	});
 }
 
-export function getAllDataIDB(db) {
+export function getAllDataIDB() {
+	const state = store.getState();
+	const db = state.mainApp.idb;
 	return new Promise(function (resolve, reject) {
 		try {
 			let allData = [],

@@ -1,1 +1,4 @@
 export const SET_LOADING = 'SET_LOADING';
+export const SET_IDB_SUCCEEDED = 'SET_IDB_SUCCEEDED';
+export const SET_IDB_REQUESTED = 'SET_IDB_REQUESTED';
+export const SET_IDB_FAILED = 'SET_IDB_FAILED';

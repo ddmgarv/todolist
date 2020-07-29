@@ -1,19 +1,20 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import * as homeTypes from './home.types';
-import { getAllDataIDB } from 'IDB';
+import * as homeTypes from 'redux/home/home.types';
+import { getAllDataIDB } from 'database';
 
-function* getIDBData() {
+function* callIDBData() {
 	try {
 		const data = yield call(getAllDataIDB);
-		yield put({ type: homeTypes.GET_ALL_LISTS_SUCCEEDED, data });
+		yield put({ type: homeTypes.GET_ALL_LISTS_SUCCEEDED, payload: data });
 	} catch (e) {
-		yield put({ type: homeTypes.GET_ALL_LISTS_FAIL, message: e.message });
+		yield put({ type: homeTypes.GET_ALL_LISTS_FAILED, payload: e.message });
 	}
 }
 
-function* homeSaga() {
-	yield takeLatest(homeTypes.GET_ALL_LISTS_REQUESTED, getIDBData);
+function* watchGetLists() {
+	yield takeLatest(homeTypes.GET_ALL_LISTS_REQUESTED, callIDBData);
 }
+
 export default function* homeSagas() {
-	yield all([homeSaga()]);
+	yield all([watchGetLists()]);
 }

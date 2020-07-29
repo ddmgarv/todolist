@@ -1,18 +1,17 @@
 import React from 'react';
-import Home from './pages/home/Home';
+import Home from 'pages/home/Home';
 import Header from 'components/header/Header';
 import { connect } from 'react-redux';
-import idb from './IDB/';
+import { SET_IDB_REQUESTED } from 'redux/main.app/main.app.types';
 import './App.css';
 
 class App extends React.Component {
-	async componentDidMount() {
-		await idb();
-		// this.props.setIDBInRedux()
-		// this.props.setInitialData()
+	componentDidMount() {
+		this.props.setIDBInRedux();
 	}
-
 	render() {
+		const { idb, loading } = this.props;
+		if (!idb || loading) return <div>Loading</div>;
 		return (
 			<main>
 				<Header />
@@ -21,12 +20,14 @@ class App extends React.Component {
 		);
 	}
 }
-const mapStateToProps = (state) => ({
-	// currentUser: state.user.currentUser,
-});
 
 const mapDispatchToProps = (dispatch) => ({
-	// setCurrentUserAction: (user) => dispatch(setCurrentUser(user)),
+	setIDBInRedux: () => dispatch({ type: SET_IDB_REQUESTED }),
+});
+
+const mapStateToProps = (state) => ({
+	idb: state.mainApp.idb,
+	loading: state.mainApp.loading,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
