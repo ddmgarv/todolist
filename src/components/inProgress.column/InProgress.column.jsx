@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './inProgress.column.scss';
 
 class InProgressColumn extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			tasksInProgress: props.tasksInProgress,
-		};
-	}
 	render() {
-		const { tasksInProgress } = this.state;
+		const { tasksInProgress = [] } = this.props;
 		return (
 			<section>
 				<div>
@@ -24,4 +19,9 @@ class InProgressColumn extends Component {
 		);
 	}
 }
-export default InProgressColumn;
+
+const mapStateToProps = (state) => ({
+	tasksInProgress: state.home.allLists.inProgressList,
+});
+
+export default connect(mapStateToProps)(InProgressColumn);

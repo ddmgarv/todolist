@@ -1,0 +1,15 @@
+@import '../../styles/index.scss';
+
+.toDo {
+	@extend .columnWrapper;
+	.toDo__container {
+		display: flex;
+
+		.toDo__container--title {
+		}
+		.toDo__container--icon {
+		}
+		.toDo__container--item {
+		}
+	}
+}

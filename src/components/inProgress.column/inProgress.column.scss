@@ -1,0 +1,15 @@
+@import '../../styles/index.scss';
+
+.inProgress {
+	@extend .columnWrapper;
+	.inProgress__container {
+		display: flex;
+
+		.inProgress__container--title {
+		}
+		.inProgress__container--icon {
+		}
+		.inProgress__container--item {
+		}
+	}
+}

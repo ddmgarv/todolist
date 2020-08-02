@@ -64,7 +64,7 @@ export function getAllDataIDB() {
 	const db = state.mainApp.idb;
 	return new Promise(function (resolve, reject) {
 		try {
-			let allData = [],
+			let allData = {},
 				temp = [...db.objectStoreNames];
 			const transaction = db.transaction(db.objectStoreNames);
 			temp.forEach((objStrName, index) => {
@@ -75,7 +75,7 @@ export function getAllDataIDB() {
 					const res = e?.target?.result;
 					if (!!res) {
 						clearTimeout(timeOut);
-						allData.push(...res);
+						allData[objStrName] = res;
 						if (index + 1 === temp.length) {
 							resolve(allData);
 						}
@@ -97,6 +97,7 @@ export function setDataIDB(db, objStore, data) {
 			const transaction = db.transaction(objStore, 'write');
 			const objectStore = transaction.objectStore(objStore);
 			objectStore.add(data);
+			resolve(true);
 		} catch (error) {
 			console.error(error);
 			reject(error);

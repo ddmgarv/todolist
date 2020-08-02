@@ -11,17 +11,13 @@ class Home extends React.Component {
 		this.props.setInitialData();
 	}
 
-	componentDidUpdate() {
-		// updateState
-	}
-
 	render() {
 		return (
 			<div className='home'>
 				<div className='home__grid'>
-					<ToDoColumn tasksToDo={[1, 2, 3]} />
-					<InProgressColumn tasksInProgress={[1, 2, 3]} />
-					<DoneColumn tasksDone={[1, 2, 3]} />
+					<ToDoColumn />
+					<InProgressColumn />
+					<DoneColumn />
 				</div>
 			</div>
 		);

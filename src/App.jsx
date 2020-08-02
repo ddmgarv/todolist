@@ -11,7 +11,9 @@ class App extends React.Component {
 	}
 	render() {
 		const { idb, loading } = this.props;
-		if (!idb || loading) return <div>Loading</div>;
+		if (!idb || loading) {
+			return <div>Loading</div>;
+		}
 		return (
 			<main>
 				<Header />

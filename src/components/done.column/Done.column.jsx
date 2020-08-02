@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import './done.column.scss';
-class DoneColumn extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			tasksDone: props.tasksDone,
-		};
-	}
+import { connect } from 'react-redux';
 
+class DoneColumn extends Component {
 	render() {
-		const { tasksDone } = this.state;
+		const { tasksDone = [] } = this.props;
 		return (
 			<section>
 				<div>
@@ -25,4 +20,8 @@ class DoneColumn extends Component {
 	}
 }
 
-export default DoneColumn;
+const mapStateToProps = (state) => ({
+	tasksDone: state.home.allLists.doneList,
+});
+
+export default connect(mapStateToProps)(DoneColumn);
