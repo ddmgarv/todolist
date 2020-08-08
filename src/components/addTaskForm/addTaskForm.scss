@@ -1,0 +1,9 @@
+.addTask {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 15px;
+	input {
+		margin-top: 15px;
+	}
+}
