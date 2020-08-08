@@ -6,7 +6,12 @@ function TaskItems({ list, ...otherProps }) {
 			{list.map(function (item, index) {
 				return (
 					<div className='toDo__container--item' key={index} {...otherProps}>
-						{item}
+						<ul>
+							<li>Title: {item.title}</li>
+							<li>Description: {item.description}</li>
+							<li>Start date: {item.startDate}</li>
+							<li>Finish date: {item.finishDate}</li>
+						</ul>
 					</div>
 				);
 			})}

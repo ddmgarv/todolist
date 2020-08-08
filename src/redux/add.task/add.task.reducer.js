@@ -18,7 +18,7 @@ export default (state = initialState, { type, payload }) => {
 		case addTaskTypes.ADD_TASK_FAILED:
 			return { ...state, addTaskState: payload };
 		case addTaskTypes.HANDLE_ADDTASK_FORM:
-			return { ...state, addTaskForm: { ...state.addTaskForm, [payload.name]: payload.value } };
+			return { ...state, addTaskForm: { ...state.addTaskForm, [payload.target.name]: payload.target.value } };
 		case addTaskTypes.SET_ADDTASK_MODAL:
 			return { ...state, addTaskModal: payload };
 		default:

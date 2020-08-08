@@ -11,27 +11,19 @@ class AddTaskForm extends Component {
 	}
 	handleSubmit(event) {
 		event.preventDefault();
-		return this.props.handleForm(this.props.formState);
+		const { formState, handleForm } = this.props;
+		const id = Date.now();
+		const submitData = { objStore: 'toDoList', data: { ...formState, id } };
+		return handleForm(submitData);
 	}
 	render() {
-		console.log(this.props);
+		const { handleChange, formState } = this.props;
 		return (
 			<form className='addTask' onSubmit={this.handleSubmit}>
-				<FormInput placeholder='Title' name='title' onChange={this.props.handleChange} value={this.props.formState.title} />
-				<FormInput
-					placeholder='Description'
-					name='description'
-					onChange={this.props.handleChange}
-					value={this.props.formState.description}
-				/>
-				<FormInput name='Start date' type='date' onChange={this.props.handleChange} value={this.props.formState.startDate} />
-				<FormInput
-					placeholder='Finish date'
-					name='finishDate'
-					type='date'
-					onChange={this.props.handleChange}
-					value={this.props.formState.finishDate}
-				/>
+				<FormInput placeholder='Title' name='title' onChange={handleChange} value={formState.title} />
+				<FormInput placeholder='Description' name='description' onChange={handleChange} value={formState.description} />
+				<FormInput name='startDate' type='date' onChange={handleChange} value={formState.startDate} />
+				<FormInput name='finishDate' type='date' onChange={handleChange} value={formState.finishDate} />
 				<FormInput type='submit' value='Add task' />
 			</form>
 		);

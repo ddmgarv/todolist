@@ -91,10 +91,12 @@ export function getAllDataIDB() {
 	});
 }
 
-export function setDataIDB(db, objStore, data) {
+export function setDataIDB({ objStore, data }) {
+	const state = store.getState();
+	const db = state.mainApp.idb;
 	return new Promise(function (resolve, reject) {
 		try {
-			const transaction = db.transaction(objStore, 'write');
+			const transaction = db.transaction(objStore, 'readwrite');
 			const objectStore = transaction.objectStore(objStore);
 			objectStore.add(data);
 			resolve(true);

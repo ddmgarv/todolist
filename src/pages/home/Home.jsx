@@ -10,7 +10,6 @@ class Home extends React.Component {
 	componentDidMount() {
 		this.props.setInitialData();
 	}
-
 	render() {
 		return (
 			<div className='home'>
