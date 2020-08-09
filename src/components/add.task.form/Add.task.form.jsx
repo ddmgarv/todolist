@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FormInput from 'components/form.input/Form.input';
 import { connect } from 'react-redux';
 import { HANDLE_ADDTASK_FORM, ADD_TASK_REQUESTED } from 'redux/add.task/add.task.types';
-import './addTaskForm.scss';
+import './add.task.form.scss';
 
 class AddTaskForm extends Component {
 	constructor() {
@@ -37,7 +37,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	handleChange: (event) => dispatch({ type: HANDLE_ADDTASK_FORM, payload: event }),
-	handleForm: (data) => dispatch({ type: ADD_TASK_REQUESTED, payload: data }),
+	handleForm: (payload) => dispatch({ type: ADD_TASK_REQUESTED, payload }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTaskForm);

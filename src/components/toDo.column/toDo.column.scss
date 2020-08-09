@@ -3,20 +3,17 @@
 .toDo {
 	@extend .columnWrapper;
 	.toDo__container {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
 		width: 300px;
 		height: auto;
+		&:first-child {
+			text-align: center;
+		}
 		.toDo__container--title {
 		}
 		.toDo__container--icon {
 			margin-left: 5px;
 			color: #32cd32;
 			cursor: pointer;
-		}
-		.toDo__container--item {
 		}
 	}
 }

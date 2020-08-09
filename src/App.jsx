@@ -3,7 +3,7 @@ import Home from 'pages/home/Home';
 import Header from 'components/header/Header';
 import { connect } from 'react-redux';
 import { SET_IDB_REQUESTED } from 'redux/main.app/main.app.types';
-import './App.css';
+import './App.scss';
 
 class App extends React.Component {
 	componentDidMount() {

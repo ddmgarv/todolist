@@ -1,0 +1,18 @@
+.itemsWrapper {
+	width: 100%;
+	.itemsWrapper__list {
+		list-style-type: none;
+		.itemsWrapper__list--item {
+			position: relative;
+			margin-top: 22px;
+			h6 {
+				text-align: center;
+				margin-bottom: 10px;
+				svg {
+					margin-left: 8px;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}

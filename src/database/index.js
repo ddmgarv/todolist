@@ -106,3 +106,40 @@ export function setDataIDB({ objStore, data }) {
 		}
 	});
 }
+
+export function editDataIDB({ fromObjStore, toObjStore, data }) {
+	const state = store.getState();
+	const db = state.mainApp.idb;
+	console.log(fromObjStore, toObjStore, data);
+	debugger;
+	return new Promise(function (resolve, reject) {
+		try {
+			const transaction_deleting = db.transaction(fromObjStore, 'readwrite');
+			const objectStore_deleting = transaction_deleting.objectStore(fromObjStore);
+			objectStore_deleting.delete(data.id);
+			const transaction_adding = db.transaction(toObjStore, 'readwrite');
+			const objectStore_adding = transaction_adding.objectStore(toObjStore);
+			objectStore_adding.add(data);
+			resolve(true);
+		} catch (error) {
+			console.error(error);
+			reject(error);
+		}
+	});
+}
+
+export function deleteDataIDB({ objStore, id }) {
+	const state = store.getState();
+	const db = state.mainApp.idb;
+	return new Promise(function (resolve, reject) {
+		try {
+			const transaction = db.transaction(objStore, 'readwrite');
+			const objectStore = transaction.objectStore(objStore);
+			objectStore.delete(id);
+			resolve(true);
+		} catch (error) {
+			console.error(error);
+			reject(error);
+		}
+	});
+}

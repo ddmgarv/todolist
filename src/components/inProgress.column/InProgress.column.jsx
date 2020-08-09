@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './inProgress.column.scss';
+import TaskList from 'components/task.list/Task.list';
 
 class InProgressColumn extends Component {
 	render() {
@@ -8,12 +9,10 @@ class InProgressColumn extends Component {
 		return (
 			<section>
 				<div>
-					<h5>In Progress</h5>
+					<h4>In Progress</h4>
 				</div>
 				<div>
-					{tasksInProgress.map((item, index) => (
-						<div key={index}>{item}</div>
-					))}
+					<TaskList list={tasksInProgress} placement='toDoList' />
 				</div>
 			</section>
 		);

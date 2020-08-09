@@ -1,6 +1,8 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
 import * as homeTypes from 'redux/home/home.types';
 import { getAllDataIDB } from 'database';
+import { ADD_TASK_SUCCEEDED } from 'redux/add.task/add.task.types';
+import { EDIT_TASK_SUCCEEDED } from 'redux/edit.task/edit.task.types';
 
 function* callIDBData() {
 	try {
@@ -15,6 +17,22 @@ function* watchGetLists() {
 	yield takeLatest(homeTypes.GET_ALL_LISTS_REQUESTED, callIDBData);
 }
 
+function* watchAddedTasks() {
+	yield takeLatest(ADD_TASK_SUCCEEDED, callIDBData);
+}
+
+// function* watchDeletedTasks() {
+// 	yield takeLatest(homeTypes.GET_ALL_LISTS_REQUESTED, callIDBData);
+// }
+
+// function* watchInProgressTasks() {
+// 	yield takeLatest(homeTypes.GET_ALL_LISTS_REQUESTED, callIDBData);
+// }
+
+function* watchEditedTasks() {
+	yield takeLatest(EDIT_TASK_SUCCEEDED, callIDBData);
+}
+
 export default function* homeSagas() {
-	yield all([watchGetLists()]);
+	yield all([watchGetLists(), watchAddedTasks(), watchEditedTasks()]);
 }

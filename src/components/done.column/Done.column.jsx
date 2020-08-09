@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './done.column.scss';
 import { connect } from 'react-redux';
+import TaskList from 'components/task.list/Task.list';
+import './done.column.scss';
 
 class DoneColumn extends Component {
 	render() {
@@ -8,12 +9,10 @@ class DoneColumn extends Component {
 		return (
 			<section>
 				<div>
-					<h5>Done</h5>
+					<h4>Done</h4>
 				</div>
 				<div>
-					{tasksDone.map((item, index) => (
-						<div key={index}>{item}</div>
-					))}
+					<TaskList list={tasksDone} placement='doneList' />
 				</div>
 			</section>
 		);
