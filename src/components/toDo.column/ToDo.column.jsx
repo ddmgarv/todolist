@@ -13,9 +13,11 @@ class ToDoColumn extends Component {
 		super();
 		this.unsetModal = this.unsetModal.bind(this);
 	}
+
 	unsetModal() {
 		return this.props.setModal(false);
 	}
+
 	render() {
 		const { tasksToDo = [] } = this.props;
 		return (
