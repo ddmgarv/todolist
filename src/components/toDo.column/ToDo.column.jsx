@@ -38,7 +38,7 @@ class ToDoColumn extends Component {
 
 const mapStateToProps = (state) => ({
   tasksToDo: state.home.allLists.toDoList,
-  modalState: state.addTask.addTaskModal,
+  modalState: state.handleTask.addTaskModal,
 });
 
 const mapDispatchToProps = (dispatch) => ({

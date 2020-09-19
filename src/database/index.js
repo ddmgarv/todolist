@@ -2,7 +2,7 @@ import store from 'redux/index';
 
 export default function initiateIDB() {
   return new Promise(function (resolve, reject) {
-    //check for support
+    // check for support
     if (!('indexedDB' in window)) {
       reject("This browser doesn't support IndexedDB");
     }
@@ -34,7 +34,9 @@ export default function initiateIDB() {
   });
 }
 
-export function getDataIDB(db, objStore, searchParam) {
+export function getDataIDB(objStore, searchParam) {
+  const state = store.getState();
+  const db = state.mainApp.idb;
   return new Promise(function (resolve, reject) {
     try {
       const transaction = db.transaction(objStore, 'read');
@@ -64,8 +66,7 @@ export function getAllDataIDB() {
   const db = state.mainApp.idb;
   return new Promise(function (resolve, reject) {
     try {
-      let allData = {},
-        temp = [...db.objectStoreNames];
+      let allData = {}, temp = [...db.objectStoreNames];
       const transaction = db.transaction(db.objectStoreNames);
       temp.forEach((objStrName, index) => {
         const objStr = transaction.objectStore(objStrName, 'read');
@@ -110,7 +111,6 @@ export function setDataIDB({ objStore, data }) {
 export function editDataIDB({ fromObjStore, toObjStore, data }) {
   const state = store.getState();
   const db = state.mainApp.idb;
-  console.log(fromObjStore, toObjStore, data);
   return new Promise(function (resolve, reject) {
     try {
       const transaction_deleting = db.transaction(fromObjStore, 'readwrite');

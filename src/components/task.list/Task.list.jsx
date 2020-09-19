@@ -6,13 +6,7 @@ import { EDIT_TASK_REQUESTED } from 'redux/handle.task/handle.task.types';
 import 'components/task.list/task.list.scss';
 
 class TaskList extends React.Component {
-  constructor() {
-    super();
-    this.handleEditTask = this.handleEditTask.bind(this);
-    this.handleDeleteTask = this.handleDeleteTask.bind(this);
-  }
-
-  handleEditTask(placement, item) {
+  handleEditTask = (placement, item) => {
     let text = '';
     switch (placement) {
       case 'toDoList':
@@ -35,7 +29,7 @@ class TaskList extends React.Component {
     });
   }
 
-  handleDeleteTask(placement, id) {
+  handleDeleteTask = (placement, id) => {
     return this.props.deleteTask({ objStore: placement, id });
   }
 

@@ -1,6 +1,6 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
 import { setDataIDB, editDataIDB, deleteDataIDB } from 'database';
-import * as handleTaskTypes from 'redux/add.task/add.task.types';
+import * as handleTaskTypes from 'redux/handle.task/handle.task.types';
 
 function* addTask(action) {
   try {

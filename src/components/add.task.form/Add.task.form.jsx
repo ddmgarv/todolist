@@ -5,17 +5,17 @@ import { HANDLE_ADDTASK_FORM, ADD_TASK_REQUESTED } from 'redux/handle.task/handl
 import './add.task.form.scss';
 
 class AddTaskForm extends Component {
-  handleSubmit = (event) => {
+  submitForm = (event) => {
     event.preventDefault();
-    const { formState, handleForm } = this.props;
+    const { formState, handleSubmit } = this.props;
     const id = Date.now();
     const submitData = { objStore: 'toDoList', data: { ...formState, id } };
-    return handleForm(submitData);
+    return handleSubmit(submitData);
   }
   render() {
     const { handleChange, formState } = this.props;
     return (
-      <form className='addTask' onSubmit={this.handleSubmit}>
+      <form className='addTask' onSubmit={this.submitForm}>
         <FormInput placeholder='Title' name='title' onChange={handleChange} value={formState.title} />
         <FormInput placeholder='Description' name='description' onChange={handleChange} value={formState.description} />
         <FormInput name='startDate' type='date' onChange={handleChange} value={formState.startDate} />
@@ -27,13 +27,13 @@ class AddTaskForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  addTaskState: state.addTask.addTaskState,
-  formState: state.addTask.addTaskForm,
+  addTaskState: state.handleTask.addTaskState,
+  formState: state.handleTask.addTaskForm,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (event) => dispatch({ type: HANDLE_ADDTASK_FORM, payload: event }),
-  handleForm: (payload) => dispatch({ type: ADD_TASK_REQUESTED, payload }),
+  handleSubmit: (payload) => dispatch({ type: ADD_TASK_REQUESTED, payload }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTaskForm);
