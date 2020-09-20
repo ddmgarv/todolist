@@ -5,14 +5,14 @@ import './done.column.scss';
 
 class DoneColumn extends Component {
 	render() {
-		const { tasksDone = [] } = this.props;
+		const { doneList = [] } = this.props;
 		return (
-			<section>
-				<div>
+			<section className='doneColumn'>
+				<div className='doneColumn__container'>
 					<h4>Done</h4>
 				</div>
-				<div>
-					<TaskList list={tasksDone} placement='doneList' />
+				<div className='doneColumn__container'>
+					<TaskList list={doneList} placement='doneList' />
 				</div>
 			</section>
 		);
@@ -20,7 +20,7 @@ class DoneColumn extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	tasksDone: state.home.allLists.doneList,
+	doneList: state.home.allLists.doneList,
 });
 
 export default connect(mapStateToProps)(DoneColumn);

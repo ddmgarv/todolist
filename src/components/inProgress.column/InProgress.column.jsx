@@ -5,14 +5,14 @@ import TaskList from 'components/task.list/Task.list';
 
 class InProgressColumn extends Component {
 	render() {
-		const { tasksInProgress = [] } = this.props;
+		const { inProgressList = [] } = this.props;
 		return (
-			<section>
-				<div>
-					<h4>In Progress</h4>
+			<section className='inProgressColumn'>
+				<div className='inProgressColumn__container'>
+					<h4 className='inProgressColumn__container--title'>In Progress</h4>
 				</div>
-				<div>
-					<TaskList list={tasksInProgress} placement='toDoList' />
+				<div className='inProgressColumn__container'>
+					<TaskList list={inProgressList} placement='toDoList' />
 				</div>
 			</section>
 		);
@@ -20,7 +20,7 @@ class InProgressColumn extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	tasksInProgress: state.home.allLists.inProgressList,
+	inProgressList: state.home.allLists.inProgressList,
 });
 
 export default connect(mapStateToProps)(InProgressColumn);

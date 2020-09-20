@@ -1,15 +1,14 @@
 @import '../../styles/index.scss';
 
-.done {
+.doneColumn {
 	@extend .columnWrapper;
-	.done__container {
-		display: flex;
-
-		.done__container--title {
+	.doneColumn__container {
+		@extend .columnContainer;
+		.doneColumn__container--title {
 		}
-		.done__container--icon {
+		.doneColumn__container--icon {
 		}
-		.done__container--item {
+		.doneColumn__container--item {
 		}
 	}
 }

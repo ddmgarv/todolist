@@ -1,16 +1,12 @@
 @import '../../styles/index.scss';
 
-.toDo {
+.toDoColumn {
 	@extend .columnWrapper;
-	.toDo__container {
-		width: 300px;
-		height: auto;
-		&:first-child {
-			text-align: center;
+	.toDoColumn__container {
+		@extend .columnContainer;
+		.toDoColumn__container--title {
 		}
-		.toDo__container--title {
-		}
-		.toDo__container--icon {
+		.toDoColumn__container--icon {
 			margin-left: 5px;
 			color: #32cd32;
 			cursor: pointer;

@@ -9,40 +9,38 @@ import AddTaskForm from 'components/add.task.form/Add.task.form';
 import './toDo.column.scss';
 
 class ToDoColumn extends Component {
-  unsetModal = () => {
-    return this.props.setModal(false);
-  }
-
-  render() {
-    const { tasksToDo = [] } = this.props;
-    return (
-      <section className='toDo'>
-        <div className='toDo__container'>
-          <h4 className='toDo__container--title'>
-            To Do
-						<FontAwesomeIcon onClick={() => this.props.setModal(true)} className='toDo__container--icon' icon={faPlusCircle} />
-          </h4>
-        </div>
-        <div className='toDo__container'>
-          <TaskList list={tasksToDo} placement='toDoList' />
-        </div>
-        {this.props.modalState && (
-          <Modal unsetModal={this.unsetModal} title='Añadir tarea'>
-            <AddTaskForm />
-          </Modal>
-        )}
-      </section>
-    );
-  }
+	closeModal = () => this.props.setModal(false);
+	openModal = () => this.props.setModal(true);
+	render() {
+		const { toDoList = [] } = this.props;
+		return (
+			<section className='toDoColumn'>
+				<div className='toDoColumn__container'>
+					<h4 className='toDoColumn__container--title'>
+						To Do
+						<FontAwesomeIcon onClick={this.openModal} className='toDoColumn__container--icon' icon={faPlusCircle} />
+					</h4>
+				</div>
+				<div className='toDoColumn__container'>
+					<TaskList list={toDoList} placement='toDoColumnList' />
+				</div>
+				{this.props.addTaskModal && (
+					<Modal unsetModal={this.closeModal} title='Añadir tarea'>
+						<AddTaskForm />
+					</Modal>
+				)}
+			</section>
+		);
+	}
 }
 
 const mapStateToProps = (state) => ({
-  tasksToDo: state.home.allLists.toDoList,
-  modalState: state.handleTask.addTaskModal,
+	toDoList: state.home.allLists.toDoList,
+	addTaskModal: state.handleTask.addTaskModal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setModal: (payload) => dispatch({ type: SET_ADDTASK_MODAL, payload }),
+	setModal: (payload) => dispatch({ type: SET_ADDTASK_MODAL, payload }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoColumn);
