@@ -2,9 +2,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
-import { EDIT_TASK_REQUESTED } from 'redux/handle.task/handle.task.types';
-import 'components/task.list/task.list.scss';
+import { EDIT_TASK_REQUESTED, DELETE_TASK_REQUESTED } from 'redux/handle.task/handle.task.types';
 import { swalConfirm } from 'utils/swalConfirm';
+import Modal from 'components/modal/Modal';
+import 'components/task.list/task.list.scss';
+import EditTaskForm from 'components/edit.task.form/Edit.task.form';
 
 class TaskList extends React.Component {
 	handleEditTask = (placement, item) => {
@@ -37,7 +39,7 @@ class TaskList extends React.Component {
 	};
 
 	render() {
-		const { list, placement } = this.props;
+		const { list, placement, modifyTaskModal } = this.props;
 		return (
 			<div className='itemsWrapper'>
 				<ul className='itemsWrapper__list'>
@@ -60,16 +62,23 @@ class TaskList extends React.Component {
 						</li>
 					))}
 				</ul>
+				{modifyTaskModal && (
+					<Modal>
+						<EditTaskForm />
+					</Modal>
+				)}
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+	modifyTaskModal: state.handleTask.modifyTaskModal,
+});
 
 const mapDispatchToProps = (dispatch) => ({
 	editTask: (payload) => dispatch({ type: EDIT_TASK_REQUESTED, payload }),
-	deleteTask: (payload) => dispatch({ type: EDIT_TASK_REQUESTED, payload }),
+	deleteTask: (payload) => dispatch({ type: DELETE_TASK_REQUESTED, payload }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
